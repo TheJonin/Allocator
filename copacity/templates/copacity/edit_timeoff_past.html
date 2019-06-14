@@ -1,0 +1,39 @@
+{% extends "copacity/includes/base.html" %}
+{% block nav-copacity %}<a class="nav-link active" href="{% url 'copacity_list' %}">Capacity</a><span class="sr-only">(current)</span>{% endblock %}
+
+    {% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div>
+                    <h1>{{resource_name}}'s Time Off</h1>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="panel_profile panel-default_profile">
+                    <div class="panel-body_profile">
+                        <div>
+                            <p><strong><a href="{% url 'edit_timeoff' resource_id %}">Future</a> | Past</strong></p>
+                        </div>
+                        <div>
+                            {% for t in time_off_list %}
+                                {{t.date}} - {{t.hours_lost}} Hours<br>
+                            {% endfor %}
+                            <div>&nbsp</div>
+                        </div>   
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class = "row">
+            <div class = "col-sm-12">
+                <a class="btn btn-primary" href="{% url 'resource_profile' resource_id %}">Back</a>
+            </div>
+        </div>
+    </div>
+    
+
+
+    {% endblock content %}

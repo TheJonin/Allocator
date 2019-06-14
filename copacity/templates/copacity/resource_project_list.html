@@ -1,0 +1,83 @@
+{% extends "copacity/includes/base.html" %}
+{% block nav-copacity %}<a class="nav-link active" href="{% url 'copacity_list' %}">Capacity</a><span class="sr-only">(current)</span>{% endblock %}
+
+
+    {% block content %}
+        <div class="container">
+            <h1>{{ resource_name }}'s Projects</h1>
+            <div class="row">
+                <div class="col-sm-12">
+                    <p><strong></b>Future | <a href="{% url 'resource_project_list_past' resource_id %}">Past</a> | <a href="{% url 'resource_project_list_all' resource_id %}">All</a></strong></p>
+                </div>
+            </div>
+            <div id="accordion" class="panel-group">
+                {% for key, value_list in projects_dict.items %}
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a data-toggle="collapse" data-parent="#accordion" href="#{{value_list.0.0.0}}"><h4>{{ key }}</h4></a>
+                            </h4>
+                        </div>
+                        <div id="{{value_list.0.0.0}}" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                <table class="table table-condensed">
+                                    <tr>
+                                        <th>
+                                            Date
+                                        </th>
+                                        <th>
+                                            Weekly copacity
+                                        </th>
+                                        <th>
+                                            Allocation
+                                        </th>
+                                        <th>
+                                            Percentage
+                                        </th>
+                                        <!--<th>-->
+                                        <!--    Actual-->
+                                        <!--</th>-->
+                                    </tr>
+                                    {% for value in value_list %}
+                                        <!--<form method="post" role="form">-->
+                                        {% for i in value %}
+                                        <tr>
+                                            <td>
+                                                {{ i.1|date:"D m/d/Y" }} - {{ i.2|date:"D m/d/Y" }}
+                                            </td>
+                                            <td>
+                                                {{i.3}}
+                                            </td>
+                                            <td>
+                                                {{i.4}}
+                                            </td>
+                                            <td>
+                                                {{i.5}}
+                                            </td>
+                                            <!--<td>-->
+                                            <!--    <div class="form-group-allocation">-->
+                                            <!--        {{i.6.as_p}}-->
+                                            <!--    </div>-->
+                                            <!--</td>-->
+                                        </tr>
+                                        {% endfor %}
+                                        <!--<input class="btn btn-primary float-right" style="margin-top:-61px;" type="submit" value="Save Actuals" />-->
+                                        <!--</form>-->
+                                    {% endfor %}
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}    
+            </div>
+            <div>
+                <a class="btn btn-primary" href="{% url 'resource_profile' resource_id %}">Back</a>
+            </div>
+        </div>
+        
+        
+        
+
+
+
+    {% endblock content %}

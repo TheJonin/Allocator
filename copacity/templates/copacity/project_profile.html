@@ -1,0 +1,144 @@
+{% extends "copacity/includes/base.html" %}
+{% block nav-projects %}<a class="nav-link active" href="{% url 'project_list' %}">Projects</a><span class="sr-only">(current)</span>{% endblock %}
+{% load render_table from django_tables2 %}
+{% load static %}
+
+    {% block content %}
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-8">
+                    <h1>{{ project_name }}</h1>
+                    <h5>{{ project_type }}</h5>
+                </div>
+                <div class="col-sm-4">
+                    <div class="float-right">
+                        <a class="btn btn-primary btn-block float-right" href="{% url 'project_list' %}">Back to Project List</a><br><br>
+                        <a class="btn btn-primary btn-block float-right" href="{% url 'edit_project' project_id %}">Edit Project</a><br>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-2">
+                    <div class="panel_profile panel-default_profile">
+                        <div class="panel-body_profile">
+                            <h4>Project Scope</h4>
+                            <div class="center-block" style="margin: 20px 0 0 0px;">
+                                <table style="margin:auto;">
+                                    <tr>
+                                        <td style="padding-top:12px;">
+                                            <h7>PM</h7>
+                                        </td>
+                                        <td style="padding-top:12px;">
+                                            <h7>{{ project_scope_PM }}</h7>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding-top:12px;">
+                                            <h7>DEV</h7>
+                                        </td>
+                                        <td style="padding-top:12px;">
+                                            <h7>{{ project_scope_DEV }}</h7>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding-top:12px;">
+                                            <h7>Design</h7>
+                                        </td>
+                                        <td style="padding-top:12px;">
+                                            <h7>{{ project_scope_DESIGN }}</h7>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding-top:12px;">
+                                            <h7>Testing&nbsp&nbsp</h7>
+                                        </td>
+                                        <td style="padding-top:12px;">
+                                            <h7>{{ project_scope_TESTING }}</h7>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>    
+                </div>
+                <div class="col-sm-8">
+                    <div class="panel_profile panel-default_profile">
+                        <div class="panel-body_profile">
+                            <div class="float-right">
+                                <a href="{% url 'edit_project_resource' project_id %}">Edit Resources</a><br>
+                            </div>
+                            <h4>Resources</h4>
+                            {% render_table table %}
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-2">
+                    <div class="panel_profile panel-default_profile">
+                        <div class="panel-body_profile">
+                            <h4>Dates</h4>
+                            <div class="center-block" style="margin-top: 20px;">
+                                <center><h7>Created Date</h7><br>{{ project_date_Created }}<br><br>
+                                <h7>Start Date</h7><br>{{ project_date_Start }}<br><br>
+                                <h7>End Date</h7><br>{{ project_date_End }}</center>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div>&nbsp</div>
+            
+
+            <h2>Allocations</h2>
+
+            <table class="table table-condensed">
+                <tr>
+                    <th>
+                        &nbsp
+                    </th>
+                    {% for r in project_resource_list %}
+                    <th colspan="2">
+                        {{r}}
+                    </th>    
+                    {% endfor %}
+                </tr>
+                <tr>
+                    <th>
+                        Week
+                    </th>
+                    {% for r in project_resource_list %}
+                    <th>
+                        Allocated
+                    </th>
+                    <th>
+                        Avalible
+                    </th>
+                    {% endfor %}
+                </tr>
+                <form method="post" role="form">
+                {% csrf_token %}
+                {% for obj in resource_allocation_grid %}
+                <tr>
+                    <td>
+                        {{ obj.0|date:"D m/d/Y" }} - {{ obj.1|date:"D m/d/Y" }}
+                    </td>
+                    {% for i, v in obj.2.items %}
+                    <td>
+                        <div class="form-group-allocation">
+                            {{v.0}}
+                        </div>
+                    </td>
+                    <td>
+                        {{v.2}}
+                    </td>
+                    {% endfor %}
+                    
+                </tr>
+
+                {% endfor %}
+                <input class="btn btn-primary float-right" style="margin-top:-45px;" type="submit" value="Save Changes" />
+                </form>
+            </table>
+
+
+        </div>
+    {% endblock content %}

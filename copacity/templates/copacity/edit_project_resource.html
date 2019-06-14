@@ -1,0 +1,60 @@
+{% extends "copacity/includes/base.html" %}
+{% block nav-projects %}<a class="nav-link active" href="{% url 'project_list' %}">Projects</a><span class="sr-only">(current)</span>{% endblock %}
+
+    {% block content %}
+    <div class="container">
+        <div>
+            <h1>Manage Resources</h1>
+        </div>
+        <div>
+            <h3>Project: {{project_name}}</h3>
+        </div>
+        <div>&nbsp</div>
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="panel_profile panel-default_profile">
+                    <div class="panel-body_profile">
+                        <h4>Add Resources</h4>
+                        <form method="post" role="form">
+                            {% csrf_token %}
+                            {% for i in addform.non_active %}
+                                <div class="checkbox">
+                                    {{i}}
+                                </div>
+                            {% endfor %}
+                            <div class="form=group">
+                                <input class="btn btn-primary" type="submit" value="Add Selected" />
+                            </div>
+                        </form>
+                    </div>    
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="panel_profile panel-default_profile">
+                    <div class="panel-body_profile">
+                        <h4>Delete Resources</h4>
+                        <form method="post" role="form">
+                            {% csrf_token %}
+                            {% for i in form.active %}
+                                <div class="checkbox">
+                                    {{i}}
+                                </div>
+                            {% endfor %}
+                            <div class="form-group">
+                                <input class="btn btn-primary" type="submit" value="Delete Selected" />
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <a class="btn btn-primary" href="{% url 'project_properties' offset %}">Back</a>
+        </div>
+    </div>
+        
+
+
+
+
+    {% endblock content %}

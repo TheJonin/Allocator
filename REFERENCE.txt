@@ -1,0 +1,2 @@
+start DB Server
+sudo service postgresql start

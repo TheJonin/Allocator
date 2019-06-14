@@ -1,0 +1,182 @@
+{% extends "copacity/includes/base.html" %}
+{% load render_table from django_tables2 %}
+{% load permission_by_group %}
+
+{% block nav-copacity %}<a class="nav-link active" href="{% url 'copacity_list' %}">Capacity</a><span class="sr-only">(current)</span>{% endblock %}
+    {% block content %}
+
+
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-8">
+                <h1>{{ name }}</h1>
+                <h5>{{ type }}</h5>
+            </div>
+            <div class="col-sm-4">
+                <div class="float-right">
+                    {% if request.user|has_group:"Manager" %}
+                    <a class="btn btn-primary btn-block float-right" href="{% url 'copacity_list' %}">Back to capacity List</a><br><br>
+                    <a class="btn btn-primary btn-block float-right" href="{% url 'edit_resource' resource_id %}">Edit Resource</a><br>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12" >
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>
+                            </th>
+                            <th>
+                                This week
+                            </th>
+                            <th>
+                                Next Week
+                            </th>
+                            <th>
+                                30 Days
+                            </th>
+                            <th>
+                                60 Days
+                            </th>
+                            <th>
+                                90 Days
+                            </th>                            
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <b>Total capacity</b>
+                            </td>
+                            <td>
+                                {{ this_week.0 }}
+                            </td>
+                            <td>
+                                {{ next_week.0 }}
+                            </td>
+                            <td>
+                                {{ thirty_days.0 }}
+                            </td>
+                            <td>
+                                {{ sixty_days.0 }}
+                            </td>
+                            <td>
+                                {{ ninty_days.0 }}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <b>Allocated</b>
+                            </td>
+                            <td>
+                                {{ this_week.1 }}
+                            </td>
+                            <td>
+                                {{ next_week.1 }}
+                            </td>
+                            <td>
+                                {{ thirty_days.1 }}
+                            </td>
+                            <td>
+                                {{ sixty_days.1 }}
+                            </td>
+                            <td>
+                                {{ ninty_days.1 }}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <b>Percentage</b>
+                            </td>
+                            <td>
+                                {{ this_week.2 }}
+                            </td>
+                            <td>
+                                {{ next_week.2 }}
+                            </td>
+                            <td>
+                                {{ thirty_days.2 }}
+                            </td>
+                            <td>
+                                {{ sixty_days.2 }}
+                            </td>
+                            <td>
+                                {{ ninty_days.2 }}
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="row">
+            {% if request.user|has_group:"Manager" %}
+            <div class="col-sm-4">
+                <div class="panel_profile panel-default_profile">
+                    <div class="panel-body_profile">
+                        <h4>Capacity</h4>
+                        <div>&nbsp</div>
+                        <center><h6>{{ copacity }}</h6></center>
+                    </div>
+                </div>    
+            </div>
+            {% endif %}
+            {% if request.user|has_group:"Manager" %}
+            <div class="col-sm-4">
+            {% else %}
+            <div class="col-sm-6">
+            {% endif %}
+                <div class="panel_profile panel-default_profile">
+                    <div class="panel-body_profile">
+                        <div class="float-right">
+                            <a href="{% url 'edit_schedule' resource_id %}">Edit</a><br>
+                        </div>
+                        <h4>Schedule</h4>
+                        {% for i in schedule %}
+                            {{ i }}<br>
+                        {% endfor %}    
+                    </div>
+                </div>
+            </div>
+            {% if request.user|has_group:"Manager" %}
+            <div class="col-sm-4">
+            {% else %}
+            <div class="col-sm-6">
+            {% endif %}
+                <div class="panel_profile panel-default_profile">
+                    <div class="panel-body_profile">
+                        <div class="float-right">
+                            <a href="{% url 'edit_timeoff' resource_id %}">View/Edit</a><br>
+                        </div>
+                        <h4>Time off</h4>
+                        {{ time_off.0 }}<br>
+                        {{ time_off.1 }}<br>
+                        {{ time_off.2 }}<br>
+                        {{ time_off.3 }}<br>
+                        {{more}}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12" >
+                <div>&nbsp</div>
+                <div class="float-right">
+                    <a class="btn btn-primary" href="{% url 'resource_project_list' resource_id %}">Project Details</a><br>
+                </div>
+                <h4>Active Projects</h4>
+                <div>&nbsp</div>
+                <div>
+                    {% render_table table2 %}    
+                </div>
+        
+            </div>
+        </div>
+
+
+    </div>    
+
+        
+
+    {% endblock content %}

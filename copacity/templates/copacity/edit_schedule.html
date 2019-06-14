@@ -1,0 +1,42 @@
+{% extends "copacity/includes/base.html" %}
+{% block nav-copacity %}<a class="nav-link active" href="{% url 'copacity_list' %}">Capacity</a><span class="sr-only">(current)</span>{% endblock %}
+
+    {% block content %}
+        <div class="container">
+            <div>
+                <h1>{{resource_name}}'s Schedule</h1>
+            </div>
+            <div class="row">
+                <div class="col-sm-8">
+                    <h4>Edit Schedule</h4>
+                        <form method="post" role="form">
+                            {% for f in form_list %}
+                            {% csrf_token %}
+                            <div class="form-inline">
+                                <div class="form-group">
+                                    <div style="width:100px;">
+                                        <b>{{f.0}}</b>
+                                    </div>
+                                    {{ f.1 }}
+                                    {% if f.errors %}
+                                        {% for error in f.errors %}
+                                            <div class="alert alert-danger">
+                                                <strong>{{ error|escape }}</strong>
+                                            </div>
+                                        {% endfor %}
+                                    {% endif %}
+                                </div>
+                            </div>
+                            {% endfor %}
+                            <div class="form-group">
+                                <a class="btn btn-primary" href="{% url 'resource_profile' resource_id %}">Back</a>
+                                <input class="btn btn-primary float-right" type="submit" value="Save" />
+                            </div>
+                        </form>                                
+                </div>
+            </div>
+        </div>
+
+    {% endblock content %}
+    
+    

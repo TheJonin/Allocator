@@ -1,0 +1,52 @@
+{% load static %}
+{% load addclass %}
+
+        <!DOCTYPE html>
+        <html lang="en">
+          <head>
+            <meta charset="utf-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+            <meta name="description" content="">
+            <meta name="author" content="">
+            <link rel="icon" href="../../../../favicon.ico">
+        
+            <title>Allocator</title>
+        
+            <!-- Bootstrap core CSS -->
+            <!--<link href="../../../../dist/css/bootstrap.min.css" rel="stylesheet">-->
+            <link href="{% static 'css/bootstrap.css' %}" rel="stylesheet">
+            
+        
+            <!-- Custom styles for this template -->
+            <!--<link href="dashboard.css" rel="stylesheet">-->
+            <link href="{% static 'css/dashboard.css' %}" rel="stylesheet">
+            
+            <!--<link rel="stylesheet" href="{% static 'css/bootstrap2.css' %}">-->
+            <script src="{% static 'js/jquery.min.js' %}"></script>
+            <script src="{% static 'js/bootstrap.min.js' %}"></script>
+                
+          </head>
+        
+          <body style="background-color:#303641;">
+            <div class="containter">
+              <div class="row">
+                <img class="center-block" style="margin-bottom:25px;" src="{% static 'app_logo_login.png' %}">
+              </div>
+              <div class="row">
+                <div class="center-block">
+                  <div class="panel_login panel-default_login">
+                    <div class="panel-body_login">
+                    
+                          {% block content %}{% endblock content %}
+
+                      
+                    </div>
+                  </div>        
+                </div>
+              </div>
+            </div>
+            
+        
+          </body>
+        </html>
+

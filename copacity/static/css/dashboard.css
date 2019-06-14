@@ -1,0 +1,148 @@
+/*
+ * Base structure
+ */
+
+/* Move down content because we have a fixed navbar that is 3.5rem tall */
+body {
+  padding-top: 3.5rem;
+}
+
+/*
+ * Typography
+ */
+
+h1 {
+  margin-bottom: 5px;
+  padding-bottom: 9px;
+  border-bottom: 1px solid #dddddd;
+}
+
+h5 {
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+}
+
+h6 {
+  font-size: 3rem;
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+}
+h7 {
+  font-size: 1.25rem;
+  margin-bottom: 10px;
+  padding-bottom: 10px;
+}
+
+/*
+ * Sidebar
+ */
+
+.sidebar {
+  position: fixed;
+  top: 51px;
+  bottom: 0;
+  left: 0;
+  z-index: 1000;
+  padding: 20px;
+  overflow-x: hidden;
+  overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
+  border-right: 1px solid #eee;
+}
+
+/* Sidebar navigation */
+.sidebar {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.sidebar .nav {
+  margin-bottom: 20px;
+}
+
+.sidebar .nav-item {
+  width: 100%;
+
+}
+
+.sidebar .nav-item + .nav-item {
+  margin-left: 0;
+}
+
+.sidebar .nav-link {
+  border-radius: 0;
+  color: #aaaaaa;
+}
+
+/*
+ * Dashboard
+ */
+
+ /* Placeholders */
+.placeholders {
+  padding-bottom: 3rem;
+}
+
+.placeholder img {
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
+}
+
+/*# custom below this point */
+
+
+.panel_profile {
+    margin-bottom: 20px;
+    background-color: #fff;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    -webkit-box-shadow: 0 3px 3px rgba(0,0,0,.05);
+    box-shadow: 0 3px 3px rgba(0,0,0,.05);
+}
+.panel-default_profile {
+    border-color: #ddd;
+    height: 100%;
+}
+.panel-default_profile>.panel-heading_profile {
+    color: #333;
+    background-color: #f5f5f5;
+    border-color: #ddd;
+}
+.panel-heading_profile {
+    padding: 10px 15px;
+    border-bottom: 1px solid transparent;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+}
+
+.panel-body_profile {
+    padding: 15px;
+}
+
+.panel_login{
+    margin-bottom: 0px;
+    background-color: #464e5d;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    -webkit-box-shadow: 0 10px 10px rgba(0,0,0,.05);
+    box-shadow: 0 10px 10px rgba(0,0,0,.05);
+    color: #fff;
+}
+.panel-default_login {
+    border-color: #464e5d;
+    height: 100%;
+}
+.panel-default_login>.panel-heading_login {
+    color: #333;
+    background-color: #464e5d;
+    border-color: #464e5d;
+}
+.panel-heading_login {
+    padding: 10px 15px;
+    border-bottom: 1px solid transparent;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+}
+
+.panel-body_login {
+    padding: 50px;
+}

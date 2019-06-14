@@ -1,0 +1,44 @@
+{% extends "copacity/includes/base.html" %}
+{% block nav-settings %}<a class="nav-link active" href="{% url 'settings' %}">Settings</a><span class="sr-only">(current)</span>{% endblock %}
+    
+    {% block content %}
+
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <h1> Application Settings </h1>
+            </div>
+        </div>
+        <div class="row">
+            <ul class="nav2 nav-tabs">
+                <li><a href="{% url 'settings_project_type' %}">Project Type</a></li>
+                <li><a href="{% url 'settings_resource_type' %}">Resource Type</a></li>
+                <li class="active"><a href="{% url 'settings_holiday' %}">Holidays</a></li>
+            </ul>
+        </div>
+        
+        
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="panel_profile panel-default_profile">
+                    <div class="panel-body_profile">
+                        <h4>Holidays</h4>
+                        <div>
+                            <p><strong><a href="{% url 'settings_holiday' %}">Future</a> | Past</strong></p>
+                        </div>
+                        <ul>
+                        {% for h in holiday_list %}
+                            <li>
+                                {{h}}
+                            </li>
+                        {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+         
+        
+    {% endblock content %}

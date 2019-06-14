@@ -1,0 +1,27 @@
+Left on project profile
+    - figure out how to not redirect when data grid is submitted
+    - add resource button
+    - remove resource option
+    - Add active flag on allocations so that if dates are changed on project, all allocations outside of date range do not effect total allocations on other projects.
+    
+    
+    
+    
+    FOR RESOURCE ADDING ON PROJECT PROFILE
+    To add a resource I just need to add a single allocation record that equals the start date of the project
+
+To delete a resource I need to mark all allocations for that user, for that project, as inactive
+	Need to add inactive status to all allocations
+	Need to add 
+
+
+On edit project resource page. Display list of resources and delete link.
+if user clicks delete a conformation message will need to appear
+
+button to add new resources
+
+sort resources by resource type and then alphabeticaly (needs to be the same order as the project profile)
+
+
+
+When dates change I also need to adjust the active / inactive status for allocations
