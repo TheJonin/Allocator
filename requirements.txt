@@ -1,7 +1,7 @@
 BzrTools==2.6.0
 Django==1.9
 Pillow==2.3.0
-PyYAML==3.12
+PyYAML==5.4
 SecretStorage==2.0.0
 argparse==1.2.1
 awsebcli==3.11.0
